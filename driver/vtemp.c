@@ -2,9 +2,27 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
+#include <linux/kernel.h>
 
+static int temperature = 25;
+
+static ssize_t vtemp_read(struct file *file,
+                          char __user *buffer,
+                          size_t count,
+                          loff_t *position)
+{
+    char text[16];
+    int length;
+
+    length = scnprintf(text, sizeof(text), "%d\n", temperature);
+
+    return simple_read_from_buffer(buffer, count, position,
+                                   text, length);
+}
 static const struct file_operations vtemp_fops = {
     .owner = THIS_MODULE,
+    .read = vtemp_read,
+
 };
 
 static struct miscdevice vtemp_device = {
