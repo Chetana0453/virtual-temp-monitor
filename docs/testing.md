@@ -68,6 +68,22 @@ C++ application was used to check the stored temperature.
 - Actual: Permission-denied error confirmed; exit status 1 confirmed earlier.
 - Status: PASS.
 
+### T10 — Concurrent Reading and Writing
+- Action: A background process alternated between 30 C and 40 C
+  while the C++ application performed 20 readings.
+- Expected: Valid readings without application or write errors.
+- Actual: All 20 readings were 30 C or 40 C. No application
+  or write errors were displayed.
+- Status: PASS for this basic concurrency test.
+
+### Kernel Log Review
+- Reviewed the last 30 kernel messages after testing.
+- Device registration and removal messages were present.
+- No vtemp crash or stack trace was visible in this excerpt.
+- Module-loading BTF warnings were present.
+- This limited test does not prove correctness under every
+  possible concurrency scenario.
+
 ## 4. Meaning of Expected Errors
 An error during an invalid-write test is the expected behaviour.
 It shows that the driver rejected the input.
@@ -79,8 +95,8 @@ Application exit status 0 indicates success.
 Application exit status 1 indicates an error.
 
 ## 5. Remaining Checks
-- Test concurrent reads and writes.
-- Inspect kernel messages after concurrent testing.
+All ten listed manual tests passed.
+The kernel-log excerpt was reviewed, with BTF warnings noted.
 
 ## 6. Test Limitations
 These results cover the manual tests listed above.
