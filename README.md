@@ -168,8 +168,13 @@ The following manual tests were completed:
 A BTF debug-information mismatch warning was observed during module
 testing. Module loading and the tested read/write operations succeeded.
 
-These tests verify basic functionality. Boundary-value, malformed-input,
-and concurrent-access tests remain to be completed.
+Ten manual tests have passed, covering temperature boundaries,
+invalid and oversized input, missing-device errors, permissions,
+module reload, and basic concurrent reading and writing.
+
+Detailed results are available in [Testing and Results](docs/testing.md).
+The concurrency test was limited and does not prove correctness
+under every possible timing scenario.
 
 ## 10. Limitations
 
@@ -187,3 +192,11 @@ and concurrent-access tests remain to be completed.
 - Save readings with timestamps.
 - Extend automated testing.
 - Explore integration with a physical temperature sensor.
+
+## Project Documentation
+
+- [Requirements and Development Plan](docs/requirements.md)
+- [System Architecture and UML Diagrams](docs/architecture.md)
+- [Testing and Results](docs/testing.md)
+- [Progress Notes](docs/progress.md)
+- [Project Report](docs/report.md)
